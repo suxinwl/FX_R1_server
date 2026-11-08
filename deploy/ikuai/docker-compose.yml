@@ -20,6 +20,9 @@ services:
   r1-media:
     image: ghcr.io/suxinwl/fx-r1-media-server:1.2.3
     container_name: R1XiaoZhi_MediaServer
+    # iKuai creates bind-mounted folders as root; the image writes config/cache
+    # under /app/files, so run this service as root on the trusted LAN.
+    user: "0:0"
     restart: unless-stopped
     ports:
       - "8100:8100"
