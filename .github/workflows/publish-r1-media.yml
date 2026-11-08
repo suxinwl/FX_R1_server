@@ -13,6 +13,7 @@ permissions:
   packages: write
 
 jobs:
+  # The exported bundle is used when an iKuai registry cannot authenticate to GHCR.
   image:
     runs-on: ubuntu-latest
     steps:
