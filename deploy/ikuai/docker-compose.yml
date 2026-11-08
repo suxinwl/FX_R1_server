@@ -1,0 +1,34 @@
+# iKuai Docker Compose: no build directive is used.
+# The r1-media image is built by GitHub Actions and published to GHCR.
+services:
+  lxserver:
+    image: xcq0607/lxserver:latest
+    container_name: lx-sync-server
+    restart: unless-stopped
+    ports:
+      - "9527:9527"
+    volumes:
+      - ./lxdata:/server/data
+      - ./lxcache:/server/cache
+      - ./lxmusic:/server/music
+    environment:
+      NODE_ENV: production
+      ADMIN_PASSWORD: ${LX_ADMIN_PASSWORD}
+      ENABLE_WEBPLAYER_AUTH: "true"
+      WEBPLAYER_PASSWORD: ${LX_WEBPLAYER_PASSWORD}
+
+  r1-media:
+    image: ghcr.io/suxinwl/fx-r1-media-server:1.2.3
+    container_name: R1XiaoZhi_MediaServer
+    restart: unless-stopped
+    ports:
+      - "8100:8100"
+    volumes:
+      - ./files:/app/files
+      - ./music:/music
+      - ./audiobook:/audiobook
+    environment:
+      TZ: Asia/Shanghai
+      MUSIC_DIR: /music
+      ABL_DIR: /audiobook
+      RADIOS_FILE: /app/files/radios.json

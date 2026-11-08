@@ -1,0 +1,71 @@
+.class final Lcom/google/android/exoplayer2/extractor/mp4/Mp4Extractor$Mp4Track;
+.super Ljava/lang/Object;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lcom/google/android/exoplayer2/extractor/mp4/Mp4Extractor;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x1a
+    name = "Mp4Track"
+.end annotation
+
+
+# instance fields
+.field public sampleIndex:I
+
+.field public final sampleTable:Lcom/google/android/exoplayer2/extractor/mp4/TrackSampleTable;
+
+.field public final track:Lcom/google/android/exoplayer2/extractor/mp4/Track;
+
+.field public final trackOutput:Lcom/google/android/exoplayer2/extractor/TrackOutput;
+
+.field public final trueHdSampleRechunker:Lcom/google/android/exoplayer2/extractor/TrueHdSampleRechunker;
+
+
+# direct methods
+.method public constructor <init>(Lcom/google/android/exoplayer2/extractor/mp4/Track;Lcom/google/android/exoplayer2/extractor/mp4/TrackSampleTable;Lcom/google/android/exoplayer2/extractor/TrackOutput;)V
+    .registers 4
+
+    .line 951
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 952
+    iput-object p1, p0, Lcom/google/android/exoplayer2/extractor/mp4/Mp4Extractor$Mp4Track;->track:Lcom/google/android/exoplayer2/extractor/mp4/Track;
+
+    .line 953
+    iput-object p2, p0, Lcom/google/android/exoplayer2/extractor/mp4/Mp4Extractor$Mp4Track;->sampleTable:Lcom/google/android/exoplayer2/extractor/mp4/TrackSampleTable;
+
+    .line 954
+    iput-object p3, p0, Lcom/google/android/exoplayer2/extractor/mp4/Mp4Extractor$Mp4Track;->trackOutput:Lcom/google/android/exoplayer2/extractor/TrackOutput;
+
+    .line 955
+    iget-object p1, p1, Lcom/google/android/exoplayer2/extractor/mp4/Track;->format:Lcom/google/android/exoplayer2/Format;
+
+    iget-object p1, p1, Lcom/google/android/exoplayer2/Format;->sampleMimeType:Ljava/lang/String;
+
+    const-string p2, "audio/true-hd"
+
+    .line 956
+    invoke-virtual {p2, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result p1
+
+    if-eqz p1, :cond_1b
+
+    new-instance p1, Lcom/google/android/exoplayer2/extractor/TrueHdSampleRechunker;
+
+    invoke-direct {p1}, Lcom/google/android/exoplayer2/extractor/TrueHdSampleRechunker;-><init>()V
+
+    goto :goto_1c
+
+    :cond_1b
+    const/4 p1, 0x0
+
+    :goto_1c
+    iput-object p1, p0, Lcom/google/android/exoplayer2/extractor/mp4/Mp4Extractor$Mp4Track;->trueHdSampleRechunker:Lcom/google/android/exoplayer2/extractor/TrueHdSampleRechunker;
+
+    return-void
+.end method

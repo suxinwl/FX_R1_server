@@ -1,0 +1,3 @@
+8c39c1f3d5979aff4b40905f45be24b2 *XiaoZhi_EchoService_V2.0.5.apk
+ead7930da0e24dc4e05ad4e6e08557e0 *XiaoZhi_SoHost_V2.0.1.apk
+70cb52912acd4ae5f5413f10930d03e9 *XiaoZhi_Unisound_V2.0.5.apk

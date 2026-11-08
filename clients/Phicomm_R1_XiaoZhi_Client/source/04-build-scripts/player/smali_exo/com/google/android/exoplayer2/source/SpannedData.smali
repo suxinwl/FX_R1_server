@@ -1,0 +1,511 @@
+.class final Lcom/google/android/exoplayer2/source/SpannedData;
+.super Ljava/lang/Object;
+
+
+# annotations
+.annotation system Ldalvik/annotation/Signature;
+    value = {
+        "<V:",
+        "Ljava/lang/Object;",
+        ">",
+        "Ljava/lang/Object;"
+    }
+.end annotation
+
+
+# instance fields
+.field private memoizedReadIndex:I
+
+.field private final removeCallback:Lcom/google/android/exoplayer2/util/Consumer;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Lcom/google/android/exoplayer2/util/Consumer<",
+            "TV;>;"
+        }
+    .end annotation
+.end field
+
+.field private final spans:Landroid/util/SparseArray;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Landroid/util/SparseArray<",
+            "TV;>;"
+        }
+    .end annotation
+.end field
+
+
+# direct methods
+.method public constructor <init>()V
+    .registers 2
+
+    .line 46
+    sget-object v0, Lcom/google/android/exoplayer2/source/-$$Lambda$SpannedData$LGStrEr_NECiV4w21-0k3YGOvkw;->INSTANCE:Lcom/google/android/exoplayer2/source/-$$Lambda$SpannedData$LGStrEr_NECiV4w21-0k3YGOvkw;
+
+    invoke-direct {p0, v0}, Lcom/google/android/exoplayer2/source/SpannedData;-><init>(Lcom/google/android/exoplayer2/util/Consumer;)V
+
+    return-void
+.end method
+
+.method public constructor <init>(Lcom/google/android/exoplayer2/util/Consumer;)V
+    .registers 3
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/google/android/exoplayer2/util/Consumer<",
+            "TV;>;)V"
+        }
+    .end annotation
+
+    .line 53
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 54
+    new-instance v0, Landroid/util/SparseArray;
+
+    invoke-direct {v0}, Landroid/util/SparseArray;-><init>()V
+
+    iput-object v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    .line 55
+    iput-object p1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->removeCallback:Lcom/google/android/exoplayer2/util/Consumer;
+
+    const/4 p1, -0x1
+
+    .line 56
+    iput p1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->memoizedReadIndex:I
+
+    return-void
+.end method
+
+.method static synthetic lambda$new$0(Ljava/lang/Object;)V
+    .registers 1
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public appendSpan(ILjava/lang/Object;)V
+    .registers 7
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(ITV;)V"
+        }
+    .end annotation
+
+    .line 89
+    iget v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->memoizedReadIndex:I
+
+    const/4 v1, 0x0
+
+    const/4 v2, 0x1
+
+    const/4 v3, -0x1
+
+    if-ne v0, v3, :cond_17
+
+    .line 90
+    iget-object v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v0}, Landroid/util/SparseArray;->size()I
+
+    move-result v0
+
+    if-nez v0, :cond_11
+
+    const/4 v0, 0x1
+
+    goto :goto_12
+
+    :cond_11
+    const/4 v0, 0x0
+
+    :goto_12
+    invoke-static {v0}, Lcom/google/android/exoplayer2/util/Assertions;->checkState(Z)V
+
+    .line 91
+    iput v1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->memoizedReadIndex:I
+
+    .line 94
+    :cond_17
+    iget-object v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v0}, Landroid/util/SparseArray;->size()I
+
+    move-result v0
+
+    if-lez v0, :cond_42
+
+    .line 95
+    iget-object v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v0}, Landroid/util/SparseArray;->size()I
+
+    move-result v3
+
+    sub-int/2addr v3, v2
+
+    invoke-virtual {v0, v3}, Landroid/util/SparseArray;->keyAt(I)I
+
+    move-result v0
+
+    if-lt p1, v0, :cond_2d
+
+    const/4 v1, 0x1
+
+    .line 96
+    :cond_2d
+    invoke-static {v1}, Lcom/google/android/exoplayer2/util/Assertions;->checkArgument(Z)V
+
+    if-ne v0, p1, :cond_42
+
+    .line 98
+    iget-object v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->removeCallback:Lcom/google/android/exoplayer2/util/Consumer;
+
+    iget-object v1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v1}, Landroid/util/SparseArray;->size()I
+
+    move-result v3
+
+    sub-int/2addr v3, v2
+
+    invoke-virtual {v1, v3}, Landroid/util/SparseArray;->valueAt(I)Ljava/lang/Object;
+
+    move-result-object v1
+
+    invoke-interface {v0, v1}, Lcom/google/android/exoplayer2/util/Consumer;->accept(Ljava/lang/Object;)V
+
+    .line 101
+    :cond_42
+    iget-object v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v0, p1, p2}, Landroid/util/SparseArray;->append(ILjava/lang/Object;)V
+
+    return-void
+.end method
+
+.method public clear()V
+    .registers 4
+
+    const/4 v0, 0x0
+
+    .line 146
+    :goto_1
+    iget-object v1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v1}, Landroid/util/SparseArray;->size()I
+
+    move-result v1
+
+    if-ge v0, v1, :cond_17
+
+    .line 147
+    iget-object v1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->removeCallback:Lcom/google/android/exoplayer2/util/Consumer;
+
+    iget-object v2, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v2, v0}, Landroid/util/SparseArray;->valueAt(I)Ljava/lang/Object;
+
+    move-result-object v2
+
+    invoke-interface {v1, v2}, Lcom/google/android/exoplayer2/util/Consumer;->accept(Ljava/lang/Object;)V
+
+    add-int/lit8 v0, v0, 0x1
+
+    goto :goto_1
+
+    :cond_17
+    const/4 v0, -0x1
+
+    .line 149
+    iput v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->memoizedReadIndex:I
+
+    .line 150
+    iget-object v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v0}, Landroid/util/SparseArray;->clear()V
+
+    return-void
+.end method
+
+.method public discardFrom(I)V
+    .registers 5
+
+    .line 137
+    iget-object v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v0}, Landroid/util/SparseArray;->size()I
+
+    move-result v0
+
+    add-int/lit8 v0, v0, -0x1
+
+    :goto_8
+    if-ltz v0, :cond_25
+
+    iget-object v1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v1, v0}, Landroid/util/SparseArray;->keyAt(I)I
+
+    move-result v1
+
+    if-ge p1, v1, :cond_25
+
+    .line 138
+    iget-object v1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->removeCallback:Lcom/google/android/exoplayer2/util/Consumer;
+
+    iget-object v2, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v2, v0}, Landroid/util/SparseArray;->valueAt(I)Ljava/lang/Object;
+
+    move-result-object v2
+
+    invoke-interface {v1, v2}, Lcom/google/android/exoplayer2/util/Consumer;->accept(Ljava/lang/Object;)V
+
+    .line 139
+    iget-object v1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v1, v0}, Landroid/util/SparseArray;->removeAt(I)V
+
+    add-int/lit8 v0, v0, -0x1
+
+    goto :goto_8
+
+    .line 141
+    :cond_25
+    iget-object p1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {p1}, Landroid/util/SparseArray;->size()I
+
+    move-result p1
+
+    if-lez p1, :cond_3c
+
+    iget p1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->memoizedReadIndex:I
+
+    iget-object v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v0}, Landroid/util/SparseArray;->size()I
+
+    move-result v0
+
+    add-int/lit8 v0, v0, -0x1
+
+    invoke-static {p1, v0}, Ljava/lang/Math;->min(II)I
+
+    move-result p1
+
+    goto :goto_3d
+
+    :cond_3c
+    const/4 p1, -0x1
+
+    :goto_3d
+    iput p1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->memoizedReadIndex:I
+
+    return-void
+.end method
+
+.method public discardTo(I)V
+    .registers 6
+
+    const/4 v0, 0x0
+
+    .line 122
+    :goto_1
+    iget-object v1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v1}, Landroid/util/SparseArray;->size()I
+
+    move-result v1
+
+    add-int/lit8 v1, v1, -0x1
+
+    if-ge v0, v1, :cond_2f
+
+    iget-object v1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    add-int/lit8 v2, v0, 0x1
+
+    invoke-virtual {v1, v2}, Landroid/util/SparseArray;->keyAt(I)I
+
+    move-result v1
+
+    if-lt p1, v1, :cond_2f
+
+    .line 123
+    iget-object v1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->removeCallback:Lcom/google/android/exoplayer2/util/Consumer;
+
+    iget-object v3, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v3, v0}, Landroid/util/SparseArray;->valueAt(I)Ljava/lang/Object;
+
+    move-result-object v3
+
+    invoke-interface {v1, v3}, Lcom/google/android/exoplayer2/util/Consumer;->accept(Ljava/lang/Object;)V
+
+    .line 124
+    iget-object v1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v1, v0}, Landroid/util/SparseArray;->removeAt(I)V
+
+    .line 125
+    iget v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->memoizedReadIndex:I
+
+    if-lez v0, :cond_2d
+
+    add-int/lit8 v0, v0, -0x1
+
+    .line 126
+    iput v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->memoizedReadIndex:I
+
+    :cond_2d
+    move v0, v2
+
+    goto :goto_1
+
+    :cond_2f
+    return-void
+.end method
+
+.method public get(I)Ljava/lang/Object;
+    .registers 4
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(I)TV;"
+        }
+    .end annotation
+
+    .line 69
+    iget v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->memoizedReadIndex:I
+
+    const/4 v1, -0x1
+
+    if-ne v0, v1, :cond_8
+
+    const/4 v0, 0x0
+
+    .line 70
+    iput v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->memoizedReadIndex:I
+
+    .line 72
+    :cond_8
+    :goto_8
+    iget v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->memoizedReadIndex:I
+
+    if-lez v0, :cond_1b
+
+    iget-object v1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v1, v0}, Landroid/util/SparseArray;->keyAt(I)I
+
+    move-result v0
+
+    if-ge p1, v0, :cond_1b
+
+    .line 73
+    iget v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->memoizedReadIndex:I
+
+    add-int/lit8 v0, v0, -0x1
+
+    iput v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->memoizedReadIndex:I
+
+    goto :goto_8
+
+    .line 75
+    :cond_1b
+    :goto_1b
+    iget v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->memoizedReadIndex:I
+
+    iget-object v1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v1}, Landroid/util/SparseArray;->size()I
+
+    move-result v1
+
+    add-int/lit8 v1, v1, -0x1
+
+    if-ge v0, v1, :cond_3a
+
+    iget-object v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    iget v1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->memoizedReadIndex:I
+
+    add-int/lit8 v1, v1, 0x1
+
+    invoke-virtual {v0, v1}, Landroid/util/SparseArray;->keyAt(I)I
+
+    move-result v0
+
+    if-lt p1, v0, :cond_3a
+
+    .line 76
+    iget v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->memoizedReadIndex:I
+
+    add-int/lit8 v0, v0, 0x1
+
+    iput v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->memoizedReadIndex:I
+
+    goto :goto_1b
+
+    .line 78
+    :cond_3a
+    iget-object p1, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    iget v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->memoizedReadIndex:I
+
+    invoke-virtual {p1, v0}, Landroid/util/SparseArray;->valueAt(I)Ljava/lang/Object;
+
+    move-result-object p1
+
+    return-object p1
+.end method
+
+.method public getEndValue()Ljava/lang/Object;
+    .registers 3
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()TV;"
+        }
+    .end annotation
+
+    .line 112
+    iget-object v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v0}, Landroid/util/SparseArray;->size()I
+
+    move-result v1
+
+    add-int/lit8 v1, v1, -0x1
+
+    invoke-virtual {v0, v1}, Landroid/util/SparseArray;->valueAt(I)Ljava/lang/Object;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public isEmpty()Z
+    .registers 2
+
+    .line 155
+    iget-object v0, p0, Lcom/google/android/exoplayer2/source/SpannedData;->spans:Landroid/util/SparseArray;
+
+    invoke-virtual {v0}, Landroid/util/SparseArray;->size()I
+
+    move-result v0
+
+    if-nez v0, :cond_a
+
+    const/4 v0, 0x1
+
+    goto :goto_b
+
+    :cond_a
+    const/4 v0, 0x0
+
+    :goto_b
+    return v0
+.end method

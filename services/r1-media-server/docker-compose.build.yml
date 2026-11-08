@@ -1,0 +1,15 @@
+services:
+  r1-media:
+    build: .
+    image: ghcr.io/suxinwl/fx-r1-media-server:1.2.3
+    ports:
+      - "8100:8100"
+    volumes:
+      - ./files:/app/files
+      - ./music:/music
+      - ./audiobook:/audiobook
+    environment:
+      TZ: Asia/Shanghai
+      MUSIC_DIR: /music
+      ABL_DIR: /audiobook
+      RADIOS_FILE: /app/files/radios.json
