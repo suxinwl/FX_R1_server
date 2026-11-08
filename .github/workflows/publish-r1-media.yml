@@ -24,11 +24,24 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and push
+      - name: Build image locally
         uses: docker/build-push-action@v6
         with:
           context: services/r1-media-server
-          push: true
+          load: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/fx-r1-media-server:1.2.3
             ghcr.io/${{ github.repository_owner }}/fx-r1-media-server:latest
+      - name: Push image to GHCR
+        run: |
+          docker push ghcr.io/${{ github.repository_owner }}/fx-r1-media-server:1.2.3
+          docker push ghcr.io/${{ github.repository_owner }}/fx-r1-media-server:latest
+      - name: Export iKuai image bundle
+        run: |
+          docker save ghcr.io/${{ github.repository_owner }}/fx-r1-media-server:1.2.3 | gzip -9 > fx-r1-media-server-1.2.3.tar.gz
+      - name: Upload iKuai image bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: fx-r1-media-server-1.2.3-ikuai
+          path: fx-r1-media-server-1.2.3.tar.gz
+          retention-days: 14
